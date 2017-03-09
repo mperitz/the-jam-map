@@ -11,7 +11,7 @@ export default function ({ children }) {
       <NavbarContainer />
         <div className = "clearfix">
           { children }
-          {/*<MapContainer />
+          <MapContainer />
           <div id="control-panel" className="col-sm-4 col-lg-3 clearfix">
             <div className="col-xs-6 col-sm-12">
               <div className="panel panel-default">
@@ -27,7 +27,7 @@ export default function ({ children }) {
                 </div>
               </div>
             </div>
-          </div>*/}
+          </div>
         </div>
     </div>
   );

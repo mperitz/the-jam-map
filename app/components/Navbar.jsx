@@ -10,7 +10,7 @@ export default function (props) {
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand clearfix" href="/"><span className="glyphicon glyphicon-map-marker"></span><span>Trip Planner</span></a>
+        <a className="navbar-brand clearfix" href="/"><span className="glyphicon glyphicon-map-marker"></span><span>Jam Map</span></a>
       </div>
       <div className="collapse navbar-collapse">
         <ul className="nav navbar-nav">

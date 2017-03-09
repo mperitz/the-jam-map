@@ -17,11 +17,8 @@ import PlaylistContainer from './containers/PlaylistContainer'
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
+      <Route path="/" >
         <Route path="/map" component={App} >
-          <Route component={MapContainer} />
-          <Route component={ShowInfoContainer} />
-          <Route component={PlaylistContainer} />
         </Route>
         <IndexRedirect to="/map" />
       </Route>
