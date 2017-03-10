@@ -1,10 +1,14 @@
 import { connect } from 'react-redux';
 import JamMap from '../components/JamMap';
 
+import { fetchShowsFromEventful } from '../reducers/map'
+
+const getMarkersFromEventsArr = eventsArr => {
+  return eventsArr.map(event => ({ position: { lat: +event.latitude, lng: +event.longitude } }))
+}
+
 const mapStateToProps = state => ({
-  markers: [{
-    position: {lat: 25.0112, lng: 121.5206}
-  }]
+  markers: state.map && getMarkersFromEventsArr(state.map)
 });
 
 const mapDispatchToProps = dispatch => ({

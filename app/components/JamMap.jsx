@@ -25,6 +25,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => {
 export default class FakeMap extends React.Component {
 
   render() {
+    console.log('props', this.props)
     return (
     <GettingStartedGoogleMap
       containerElement={
