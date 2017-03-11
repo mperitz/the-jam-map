@@ -1,7 +1,9 @@
 import axios from 'axios'
+import { startDate, endDate } from '../utils'
 
 const GET_SHOWS = 'GET_SHOWS'
 const SELECT_SHOW = 'SELECT_SHOW'
+const FILTER_SHOWS = 'FILTER_SHOWS'
 
 const initialState = {
   shows: [],
@@ -32,8 +34,12 @@ const initialState = {
       lng: ''
     },
     attractionsArr: ['']
-  }
+  },
+  startDate: startDate,
+  endDate: endDate
 }
+
+// 2017-03-10T00:00:01Z
 
 const reducer = (state = initialState, action) => {
 
@@ -46,6 +52,9 @@ const reducer = (state = initialState, action) => {
     case SELECT_SHOW:
       newState.selectedShow = action.show
       break
+    case FILTER_SHOWS:
+      newState.startDate = action.startDate
+      newState.endDate = action.endDate
     default:
       return state
   }
@@ -62,13 +71,9 @@ export const selectShow = show => ({
   type: SELECT_SHOW, show
 })
 
-export const fetchShowsFromEventful = () =>
-  dispatch =>
-    axios.get('/api/shows/')
-      .then((response) => {
-        console.log('data', response.data)
-        dispatch(getShows(response.data))
-      })
-      .catch((err) => console.error(err))
+export const filterShows = filterObj => ({
+  type: FILTER_SHOWS,
+  filterObj
+})
 
 export default reducer

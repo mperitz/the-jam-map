@@ -10,9 +10,11 @@ import IconButton from 'material-ui/IconButton'
 import ActionHome from 'material-ui/svg-icons/action/home'
 import RaisedButton from 'material-ui/RaisedButton'
 
+import { startDate, endDate, convertDate, convertGenre } from '../utils'
+
 export default class Navbar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
 /*
 PLANS:
@@ -27,99 +29,120 @@ PLANS:
 - Need to make the filter button call these dispatch functions if values are present
 */
 
-    const minDate = new Date();
-    const maxDate = new Date();
-    minDate.setFullYear(minDate.getFullYear() - 1);
-    minDate.setHours(0, 0, 0, 0);
-    maxDate.setFullYear(maxDate.getFullYear() + 1);
-    maxDate.setHours(0, 0, 0, 0);
-
     this.state = {
-      minDate: minDate,
-      maxDate: maxDate,
+      startDate: startDate,
+      endDate: endDate,
       autoOk: false,
       disableYearSelection: false,
-      genre: 1
-    };
+      genre: 1,
+      artist: ''
+    }
   }
 
   handleChangeStartDate = (event, date) => {
     this.setState({
-      minDate: date,
-    });
-  };
+      startDate: date,
+    })
+  }
 
   handleChangeEndDate = (event, date) => {
     this.setState({
-      maxDate: date,
-    });
-  };
+      endDate: date,
+    })
+  }
 
-  handleFilter = (event, toggled) => {
+  handleChangeGenre = (event, genre) => {
+    this.setState({
+      genre: ++genre
+    })
+  }
+
+  handleChangeArtist = (event, artist) => {
+    this.setState({
+      artist
+    })
+  }
+
+  handleFilter = (event) => {
+    const body = {
+      startDate: convertDate(this.state.startDate),
+      endDate: convertDate(this.state.endDate),
+      genre: convertGenre(this.state.genre)
+    }
+    this.props.filterShows(body)
     console.log(this.state)
-    // here dispatch the whole state and filter changes using the ticketmaster api
-  };
+  }
+
+  handleSearch = (event) => {
+    this.props.getShowsByArtist(this.state.artist)
+  }
 
   render() {
     const styles = {
       title: {
         cursor: 'pointer'
       },
+      subTitle: {
+        fontSize: '12px'
+      },
+      datePicker: {
+        width: '75px',
+        marginRight: '50px'
+      },
       filterButton: {
         margin: 12,
         height: 30,
-        marginTop: 20
+        marginTop: 20,
+        marginRight: '50px'
+      },
+      genre: {
+        width: '150px'
       }
     }
     return (
       <AppBar
-        title={<span style={styles.title}>The Jam Map</span>}
+        title={
+          <div>
+            <span style={styles.title}>The Jam Map     </span>
+            <span style={styles.subTitle}>      Where are you raging tonight?</span>
+          </div>
+        }
         iconElementLeft={<Link to="/map"><IconButton><ActionHome /></IconButton></Link>}
       >
         <DatePicker
           style={styles.datePicker}
           floatingLabelText="Start Date"
-          defaultDate={this.state.minDate}
+          defaultDate={this.state.startDate}
           onChange={this.handleChangeStartDate}
         />
         <DatePicker
           style={styles.datePicker}
           floatingLabelText="End Date"
-          defaultDate={this.state.maxDate}
+          defaultDate={this.state.endDate}
           onChange={this.handleChangeEndDate}
         />
-        <SelectField floatingLabelText="Select Genre" value={this.state.genre}>
+        <SelectField floatingLabelText="Select Genre" style={styles.genre} value={this.state.genre} onChange={this.handleChangeGenre} >
           <MenuItem value={1} primaryText="All" />
           <MenuItem value={2} primaryText="Rock" />
           <MenuItem value={3} primaryText="Pop" />
+          <MenuItem value={4} primaryText="Country" />
+          <MenuItem value={5} primaryText="R&B" />
+          <MenuItem value={6} primaryText="Folk" />
+          <MenuItem value={7} primaryText="Funk" />
+          <MenuItem value={8} primaryText="Jazz" />
+          <MenuItem value={9} primaryText="Hip-Hop/Rap" />
+          <MenuItem value={10} primaryText="World" />
+          <MenuItem value={11} primaryText="Latin" />
+          <MenuItem value={12} primaryText="Reggae" />
+          <MenuItem value={13} primaryText="Dance/Electronic" />
         </SelectField>
+        <RaisedButton label="Filter" style={ styles.filterButton } onClick={this.handleFilter} />
         <TextField
           floatingLabelText="Search by Artist"
+          onChange={this.handleChangeArtist}
         />
-        <RaisedButton label="Filter" style={ styles.filterButton } onClick={this.handleFilter} />
+        <RaisedButton label="Search" style={ styles.filterButton } onClick={this.handleSearch} />
       </AppBar>
     )
   }
 }
-
-/*export default function (props) {
-  return (
-    <div className="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div className="navbar-header">
-        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-        </button>
-        <Link className="navbar-brand clearfix" to="/map"><span>Jam Map</span></Link>
-      </div>
-      <div className="collapse navbar-collapse">
-        <ul className="nav navbar-nav">
-          <li>Select Start Date <DatePicker /></li>
-          <li>Select End Date <DatePicker /></li>
-        </ul>
-      </div>
-    </div>
-  );
-}*/

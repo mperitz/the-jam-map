@@ -32,11 +32,3 @@ export default class Playlist extends React.Component {
     )
   }
 }
-
-// const
-
-// export default function (props) {
-//   return (
-//     <iframe src="https://embed.spotify.com/?uri=spotify:album:63pJMk3S5vS5e8wrInkDhi" width="300" height="380" frameBorder="0" allowTransparency="true"></iframe>
-//   );
-// }

@@ -1,4 +1,4 @@
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import React from 'react'
 import _ from 'lodash'
 
@@ -9,7 +9,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => {
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={12}
-    defaultCenter={{lat: 40.6782, lng: -73.9442}}
+    defaultCenter={{lat: 40.7128, lng: -74.0059}}
     onClick={props.onMapClick}
   >
     {props.markers && props.markers.map((marker, index) => (
