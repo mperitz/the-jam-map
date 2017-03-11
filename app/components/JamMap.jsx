@@ -1,6 +1,7 @@
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import React from 'react'
 import _ from 'lodash'
+
 // Wrap all `react-google-maps` components with `withGoogleMap` HOC
 // and name it GettingStartedGoogleMap
 const GettingStartedGoogleMap = withGoogleMap(props => {
@@ -13,9 +14,9 @@ const GettingStartedGoogleMap = withGoogleMap(props => {
   >
     {props.markers && props.markers.map((marker, index) => (
       <Marker
-        key={index}
+        key={marker.event.id}
         {...marker}
-        onRightClick={() => props.onMarkerRightClick(index)}
+        onClick={() => props.onMarkerClick(marker.event)}
       />
     ))}
   </GoogleMap>
@@ -37,6 +38,7 @@ export default class FakeMap extends React.Component {
       onMapLoad={_.noop}
       onMapClick={_.noop}
       markers={this.props.markers}
+      onMarkerClick={this.props.onMarkerClick}
       onMarkerRightClick={_.noop}
     />
     )

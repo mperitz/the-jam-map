@@ -16,7 +16,7 @@ export default function ({ children }) {
             <MapContainer />
           </div>
           { children }
-          <div id="control-panel" className="col-sm-4 col-lg-3 clearfix">
+          <div id="control-panel" className="col-sm-4 col-lg-3">
             <div className="col-xs-6 col-sm-12">
               <div className="panel panel-default">
                 <div className="panel-body" id="options-panel">
