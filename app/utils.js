@@ -1,5 +1,35 @@
+/* global google */
+const iconBase = '../icons'
+const icons = {
+  Rock: {icon: iconBase + 'guitar.png'},
+  Pop: {icon: iconBase + 'star.png'},
+  Country: {icon: iconBase + 'cowboy.png'},
+  'R&B': {icon: iconBase + 'moon.png'},
+  Folk: {icon: iconBase + 'banjo.png'},
+  Funk: {icon: iconBase + 'sunglasses.png'},
+  Jazz: {icon: iconBase + 'sax.png'},
+  'Hip-Hop/Rap': {icon: iconBase + 'microphone.png'},
+  World: {icon: iconBase + 'earth.png'},
+  Latin: {icon: iconBase + 'maracas.png'},
+  Reggae: {icon: iconBase + 'rasta.png'},
+  Dance: {icon: iconBase + 'disco.png'},
+}
+
+
 export const getMarkersFromEventsArr = eventsArr => {
-  return eventsArr.map(event => ({ position: { lat: +event.venue.lat, lng: +event.venue.lng }, event: event }))
+  return eventsArr.map(event => {
+    console.log(event.genre.name)
+    const marker = {
+      position: { lat: +event.venue.lat, lng: +event.venue.lng },
+      event: event,
+      animation: google.maps.Animation.DROP,
+      // icon: icons[event.genre.name].icon
+    }
+    // if (event.genre.name && icons[event.genre.name]) {
+    //   marker.icon = icons[event.genre.name].icon
+    // }
+    return marker
+  })
 }
 
 export const startDate = new Date()

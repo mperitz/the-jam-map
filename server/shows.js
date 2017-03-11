@@ -13,7 +13,7 @@ const endDate = utils.convertDate(maxDate)
 show.post('/', (req, res, next) => {
   const start = req.body.startDate ? req.body.startDate : startDate
   const end = req.body.endDate ? req.body.endDate : endDate
-  const classification = req.body.genre && req.body.genre ? req.body.genre : 'music'
+  const classification = req.body.genre && req.body.genre !== 'All' ? req.body.genre : 'music'
   axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=${classification}&dmaId=345&size=200&apikey=g4tJkO8AdLZCtDt6ggl6pxhGxDK07oqX&startDateTime=${start}&endDateTime=${end}`)
   .then(response => response.data)
   .then(data => data._embedded.events)

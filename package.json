@@ -52,6 +52,7 @@
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
     "jquery": "^3.1.1",
+    "marker-clusterer-plus": "^2.1.4",
     "material-ui": "^0.17.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",

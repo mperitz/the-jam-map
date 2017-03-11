@@ -18,24 +18,15 @@ export default class Navbar extends React.Component {
 
 /*
 PLANS:
-- Make date selection work
-  * set the initial local state to be today for the start date and one week in the future for the end date
-- Make genre selection work
-  * initial state is all genres
-- Make arist search work
-  * this will reset dates to start date: today, end date: 1 year in the future, unless dates are specified
-  * initial state is all artists
-- Need to set up dispatch functions for all of this
-- Need to make the filter button call these dispatch functions if values are present
+- Make the toggle display only filtering or searching.
 */
 
     this.state = {
       startDate: startDate,
       endDate: endDate,
-      autoOk: false,
-      disableYearSelection: false,
       genre: 1,
-      artist: ''
+      artist: '',
+      toggled: false
     }
   }
 
@@ -79,6 +70,13 @@ PLANS:
 
   render() {
     const styles = {
+      appBar: {
+        background: '#999999'
+      },
+      toggle: {
+        marginTop: 10,
+        marginRight: 20
+      },
       title: {
         cursor: 'pointer'
       },
@@ -101,6 +99,7 @@ PLANS:
     }
     return (
       <AppBar
+        style={styles.appBar}
         title={
           <div>
             <span style={styles.title}>The Jam Map     </span>
@@ -109,6 +108,14 @@ PLANS:
         }
         iconElementLeft={<Link to="/map"><IconButton><ActionHome /></IconButton></Link>}
       >
+        <div><Toggle
+          style={styles.toggle}
+          label="Date/Genre"
+          defaultToggled={false}
+          onToggle={this.handleChange}
+          labelPosition="right"
+          style={{margin: 20}}
+        /></div>
         <DatePicker
           style={styles.datePicker}
           floatingLabelText="Start Date"

@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onMarkerClick: (show) => {
+    console.log(show)
     dispatch(selectShow(show))
   }
 });

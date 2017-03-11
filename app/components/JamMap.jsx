@@ -1,4 +1,5 @@
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+// import MarkerClusterer from './marker-clusterer/MarkerClusterer'
 import React from 'react'
 import _ from 'lodash'
 
@@ -12,6 +13,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => {
     defaultCenter={{lat: 40.7128, lng: -74.0059}}
     onClick={props.onMapClick}
   >
+
     {props.markers && props.markers.map((marker, index) => (
       <Marker
         key={marker.event.id}
@@ -19,11 +21,12 @@ const GettingStartedGoogleMap = withGoogleMap(props => {
         onClick={() => props.onMarkerClick(marker.event)}
       />
     ))}
+
   </GoogleMap>
   )
 })
 
-export default class FakeMap extends React.Component {
+export default class JamMap extends React.Component {
 
   render() {
     console.log('props', this.props)
