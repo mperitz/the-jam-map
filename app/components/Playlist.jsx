@@ -17,7 +17,6 @@ export default class Playlist extends React.Component {
       axios.get(`https://api.spotify.com/v1/search?q=${attractions[Math.floor(Math.random() * attractions.length)]}&type=album`)
       .then(response => response.data)
       .then(resObj => {
-        console.log(resObj)
         const albums = resObj.albums.items
         const album = albums[Math.floor(Math.random() * albums.length)].uri
         this.setState({currentAlbum: album})
@@ -26,9 +25,8 @@ export default class Playlist extends React.Component {
     }
   }
   render() {
-    console.log(this.state.currentAlbum)
     return (
-      this.state.currentAlbum.length ? <iframe src={`https://embed.spotify.com/?uri=${this.state.currentAlbum}`} width="100%" height="300vh" frameBorder="0" allowTransparency="true"></iframe> : <h5>No spotify</h5>
+      this.state.currentAlbum.length ? <iframe src={`https://embed.spotify.com/?uri=${this.state.currentAlbum}`} width="100%" height="300vh" frameBorder="0" allowTransparency="true"></iframe> : <h5>Select a valid show for sample tracks.</h5>
     )
   }
 }

@@ -33,8 +33,7 @@ render(
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" >
-          <Route path="/map" component={App} onEnter={onMapEnter} >
-          </Route>
+          <Route path="/map" component={App} onEnter={onMapEnter} ></Route>
           <IndexRedirect to="/map" />
         </Route>
       </Router>

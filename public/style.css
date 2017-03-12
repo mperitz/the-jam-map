@@ -1,7 +1,13 @@
 body {
   background: #c1b5ad;
   font-family: 'Varela Round', sans-serif;
-  min-width: -webkit-min-content; }
+  min-width: -webkit-min-content;
+  height: '800px' !important;
+  }
+
+#main{
+  height: '800px' !important;
+}
 
 @media (min-width: 768px) {
   #map-canvas {

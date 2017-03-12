@@ -9,9 +9,13 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onMarkerClick: (show) => {
-    console.log(show)
-    dispatch(selectShow(show))
+  onMarkerClick: (marker) => {
+    console.log('before', marker)
+    dispatch(selectShow(marker.event))
+    setTimeout(() => {
+      marker.showInfo = true
+      console.log('after', marker)
+    }, 100)
   }
 })
 

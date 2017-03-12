@@ -1,8 +1,6 @@
 'use strict'; // eslint-disable-line semi
 const axios = require('axios')
-
 const show = require('express').Router() // eslint-disable-line new-cap
-
 const utils = require('./utils')
 
 const startDate = utils.convertDate(new Date())

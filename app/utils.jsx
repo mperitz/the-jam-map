@@ -1,4 +1,7 @@
 /* global google */
+import ShowInfoContainer from './containers/ShowInfoContainer'
+import React from 'react'
+
 const iconBase = '../icons'
 const icons = {
   Rock: {icon: iconBase + 'guitar.png'},
@@ -15,14 +18,14 @@ const icons = {
   Dance: {icon: iconBase + 'disco.png'},
 }
 
-
 export const getMarkersFromEventsArr = eventsArr => {
   return eventsArr.map(event => {
-    console.log(event.genre.name)
     const marker = {
       position: { lat: +event.venue.lat, lng: +event.venue.lng },
       event: event,
       animation: google.maps.Animation.DROP,
+      showInfo: false,
+      infoContent: (<ShowInfoContainer />)
       // icon: icons[event.genre.name].icon
     }
     // if (event.genre.name && icons[event.genre.name]) {

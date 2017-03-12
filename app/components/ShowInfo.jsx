@@ -4,7 +4,7 @@ import { convertShowTime } from '../utils'
 export default function (props) {
   const show = props.show
   return (
-    show ?
+    show.name ?
     (<div>
       <img style={{ maxHeight: '300px', width: '100%' }} src={show.imagesArr[0].url} />
       <div>
@@ -27,6 +27,6 @@ export default function (props) {
         {show.showInfo && <h5>{show.showInfo.length > 250 ? show.showInfo.slice(0, 250) + '.....' : show.showInfo}</h5>}
         <h5><a href={show.infoUrl}>Click here for tickets!</a></h5>
       </div>
-    </div>) : null
+    </div>) : <h5>Select a valid show for info.</h5>
   )
 }
