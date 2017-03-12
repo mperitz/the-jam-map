@@ -31,7 +31,6 @@ export default function ({ children }) {
             </div>
           </div>
         </div>
-        <PlaylistContainer />
     </div>
   );
 }
