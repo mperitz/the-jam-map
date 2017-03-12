@@ -16,11 +16,6 @@ export default class Navbar extends React.Component {
   constructor(props) {
     super(props)
 
-/*
-PLANS:
-- Make the toggle display only filtering or searching.
-*/
-
     this.state = {
       startDate: startDate,
       endDate: endDate,
@@ -28,6 +23,12 @@ PLANS:
       artist: '',
       toggled: false
     }
+  }
+
+  handleToggle = () => {
+    this.setState({
+      toggled: !this.state.toggled
+    })
   }
 
   handleChangeStartDate = (event, date) => {
@@ -74,7 +75,7 @@ PLANS:
         background: '#999999'
       },
       toggle: {
-        marginTop: 10,
+        marginTop: 20,
         marginRight: 20
       },
       title: {
@@ -85,13 +86,14 @@ PLANS:
       },
       datePicker: {
         width: '75px',
-        marginRight: '50px'
+        marginRight: '50px',
+        float: 'left'
       },
       filterButton: {
         margin: 12,
         height: 30,
-        marginTop: 20,
-        marginRight: '50px'
+        marginRight: '50px',
+        marginTop: '20px'
       },
       genre: {
         width: '150px'
@@ -103,52 +105,63 @@ PLANS:
         title={
           <div>
             <span style={styles.title}>The Jam Map     </span>
-            <span style={styles.subTitle}>      Where are you raging tonight?</span>
+            <span style={styles.subTitle}>      Where will you rage tonight?</span>
           </div>
         }
         iconElementLeft={<Link to="/map"><IconButton><ActionHome /></IconButton></Link>}
       >
-        <div><Toggle
-          style={styles.toggle}
-          label="Date/Genre"
-          defaultToggled={false}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
-        /></div>
-        <DatePicker
-          style={styles.datePicker}
-          floatingLabelText="Start Date"
-          defaultDate={this.state.startDate}
-          onChange={this.handleChangeStartDate}
-        />
-        <DatePicker
-          style={styles.datePicker}
-          floatingLabelText="End Date"
-          defaultDate={this.state.endDate}
-          onChange={this.handleChangeEndDate}
-        />
-        <SelectField floatingLabelText="Select Genre" style={styles.genre} value={this.state.genre} onChange={this.handleChangeGenre} >
-          <MenuItem value={1} primaryText="All" />
-          <MenuItem value={2} primaryText="Rock" />
-          <MenuItem value={3} primaryText="Pop" />
-          <MenuItem value={4} primaryText="Country" />
-          <MenuItem value={5} primaryText="R&B" />
-          <MenuItem value={6} primaryText="Folk" />
-          <MenuItem value={7} primaryText="Funk" />
-          <MenuItem value={8} primaryText="Jazz" />
-          <MenuItem value={9} primaryText="Hip-Hop/Rap" />
-          <MenuItem value={10} primaryText="World" />
-          <MenuItem value={11} primaryText="Latin" />
-          <MenuItem value={12} primaryText="Reggae" />
-          <MenuItem value={13} primaryText="Dance/Electronic" />
-        </SelectField>
-        <RaisedButton label="Filter" style={ styles.filterButton } onClick={this.handleFilter} />
-        <TextField
-          floatingLabelText="Search by Artist"
-          onChange={this.handleChangeArtist}
-        />
-        <RaisedButton label="Search" style={ styles.filterButton } onClick={this.handleSearch} />
+        <div style={{position: 'fixed', left: '45%'}}>
+          <Toggle
+            style={styles.toggle}
+            label={this.state.toggled ? 'Artist Search' : 'Date/Genre Filter'}
+            defaultToggled={false}
+            onToggle={this.handleToggle}
+            labelPosition="right"
+          />
+        </div>
+        {!this.state.toggled ?
+          <div>
+            <DatePicker
+              style={styles.datePicker}
+              floatingLabelText="Start Date"
+              defaultDate={this.state.startDate}
+              onChange={this.handleChangeStartDate}
+            />
+            <DatePicker
+              style={styles.datePicker}
+              floatingLabelText="End Date"
+              defaultDate={this.state.endDate}
+              onChange={this.handleChangeEndDate}
+            />
+            <SelectField floatingLabelText="Select Genre" style={styles.genre} value={this.state.genre} onChange={this.handleChangeGenre} >
+              <MenuItem value={1} primaryText="All" />
+              <MenuItem value={2} primaryText="Rock" />
+              <MenuItem value={3} primaryText="Pop" />
+              <MenuItem value={4} primaryText="Country" />
+              <MenuItem value={5} primaryText="R&B" />
+              <MenuItem value={6} primaryText="Folk" />
+              <MenuItem value={7} primaryText="Funk" />
+              <MenuItem value={8} primaryText="Jazz" />
+              <MenuItem value={9} primaryText="Hip-Hop/Rap" />
+              <MenuItem value={10} primaryText="World" />
+              <MenuItem value={11} primaryText="Latin" />
+              <MenuItem value={12} primaryText="Reggae" />
+              <MenuItem value={13} primaryText="Dance/Electronic" />
+            </SelectField>
+
+          </div>
+          :
+          <div>
+            <TextField
+              floatingLabelText="Search by Artist"
+              onChange={this.handleChangeArtist}
+            />
+
+          </div>
+        }
+        {!this.state.toggled ? <RaisedButton label="Filter" style={ styles.filterButton } onClick={this.handleFilter} />
+                             : <RaisedButton label="Search" style={ styles.filterButton } onClick={this.handleSearch} />
+        }
       </AppBar>
     )
   }
