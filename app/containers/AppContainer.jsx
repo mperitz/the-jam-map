@@ -1,10 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import NavbarContainer from './NavbarContainer';
-// import JamMapContainer from './JamMapContainer';
-import ShowInfoContainer from './ShowInfoContainer';
-import PlaylistContainer from './PlaylistContainer';
-// import FakeMap from '../components/FakeMap'
+import NavbarContainer from './NavbarContainer'
+import ShowInfoContainer from './ShowInfoContainer'
+import PlaylistContainer from './PlaylistContainer'
 import MapContainer from './MapContainer'
 
 export default function ({ children }) {

@@ -1,14 +1,5 @@
-import React from 'react';
+import React from 'react'
 import { convertShowTime } from '../utils'
-
-// export default class ShowInfo extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   componentWillReceiveProps() {
-
-//   }
-// }
 
 export default function (props) {
   const show = props.show
@@ -33,9 +24,9 @@ export default function (props) {
       </div>
       <div>
         <h3 style={{textAlign: 'left'}}>About the Show</h3>
-        {show.showInfo && <h5>{show.showInfo.length > 400 ? show.showInfo.slice(0, 400) + '.....' : show.showInfo}</h5>}
+        {show.showInfo && <h5>{show.showInfo.length > 250 ? show.showInfo.slice(0, 250) + '.....' : show.showInfo}</h5>}
         <h5><a href={show.infoUrl}>Click here for tickets!</a></h5>
       </div>
     </div>) : null
-  );
+  )
 }

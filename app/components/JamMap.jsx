@@ -3,9 +3,7 @@ import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import React from 'react'
 import _ from 'lodash'
 
-// Wrap all `react-google-maps` components with `withGoogleMap` HOC
-// and name it GettingStartedGoogleMap
-const GettingStartedGoogleMap = withGoogleMap(props => {
+const InitializeGoogleMap = withGoogleMap(props => {
   return (
   <GoogleMap
     ref={props.onMapLoad}
@@ -22,6 +20,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => {
       />
     ))}
 
+
   </GoogleMap>
   )
 })
@@ -31,7 +30,7 @@ export default class JamMap extends React.Component {
   render() {
     console.log('props', this.props)
     return (
-    <GettingStartedGoogleMap
+    <InitializeGoogleMap
       containerElement={
         <div style={{ height: `95vh`, width: `130vh` }} />
       }

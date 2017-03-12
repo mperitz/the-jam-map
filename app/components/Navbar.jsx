@@ -62,7 +62,6 @@ export default class Navbar extends React.Component {
       genre: convertGenre(this.state.genre)
     }
     this.props.filterShows(body)
-    console.log(this.state)
   }
 
   handleSearch = (event) => {
