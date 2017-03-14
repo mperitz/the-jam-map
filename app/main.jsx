@@ -28,8 +28,16 @@ const onMapEnter = () => {
   .catch(err => console.error(err))
 }
 
+const theme = getMuiTheme(darkBaseTheme)
+theme.toggle = {
+    thumbOnColor: '#565656',
+    trackOnColor: 'gray',
+    thumbOffColor: '#565656',
+    trackOffColor: 'gray'
+  }
+
 render(
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+  <MuiThemeProvider muiTheme={theme}>
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" >

@@ -23,8 +23,6 @@ export default function (props) {
         {show.pricing && <h5>Best Seats: ${show.pricing.max}</h5>}
       </div>
       <div>
-        <h3 style={{textAlign: 'left'}}>About the Show</h3>
-        {show.showInfo && <h5>{show.showInfo.length > 250 ? show.showInfo.slice(0, 250) + '.....' : show.showInfo}</h5>}
         <h5><a href={show.infoUrl}>Click here for tickets!</a></h5>
       </div>
     </div>) : <h5>Select a valid show for info.</h5>

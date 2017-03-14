@@ -70,9 +70,9 @@ export default class Navbar extends React.Component {
 
   render() {
     const styles = {
-      appBar: {
-        background: '#999999'
-      },
+      // appBar: {
+      //   background: '#999999'
+      // },
       toggle: {
         marginTop: 20,
         marginRight: 20
@@ -92,7 +92,15 @@ export default class Navbar extends React.Component {
         margin: 12,
         height: 30,
         marginRight: '50px',
-        marginTop: '20px'
+        bottom: '30px',
+        position: 'relative'
+      },
+      searchButton: {
+        margin: 12,
+        height: 30,
+        marginRight: '50px',
+        bottom: '15px',
+        position: 'relative'
       },
       genre: {
         width: '150px'
@@ -109,7 +117,49 @@ export default class Navbar extends React.Component {
         }
         iconElementLeft={<Link to="/map"><IconButton><ActionHome /></IconButton></Link>}
       >
-        <div style={{position: 'fixed', left: '45%'}}>
+        <div style={{ marginRight: '10%' }}>
+          {!this.state.toggled ?
+            <div style={{height: '77px'}}>
+              <DatePicker
+                style={styles.datePicker}
+                floatingLabelText="Start Date"
+                defaultDate={this.state.startDate}
+                onChange={this.handleChangeStartDate}
+              />
+              <DatePicker
+                style={styles.datePicker}
+                floatingLabelText="End Date"
+                defaultDate={this.state.endDate}
+                onChange={this.handleChangeEndDate}
+              />
+              <SelectField floatingLabelText="Select Genre" style={styles.genre} value={this.state.genre} onChange={this.handleChangeGenre} >
+                <MenuItem value={1} primaryText="All" />
+                <MenuItem value={2} primaryText="Rock" />
+                <MenuItem value={3} primaryText="Pop" />
+                <MenuItem value={4} primaryText="Country" />
+                <MenuItem value={5} primaryText="R&B" />
+                <MenuItem value={6} primaryText="Folk" />
+                <MenuItem value={7} primaryText="Funk" />
+                <MenuItem value={8} primaryText="Jazz" />
+                <MenuItem value={9} primaryText="Hip-Hop/Rap" />
+                <MenuItem value={10} primaryText="World" />
+                <MenuItem value={11} primaryText="Latin" />
+                <MenuItem value={12} primaryText="Reggae" />
+                <MenuItem value={13} primaryText="Dance/Electronic" />
+              </SelectField>
+              <RaisedButton label="Filter" style={ styles.filterButton } onClick={this.handleFilter} />
+            </div>
+            :
+            <div>
+              <TextField
+                floatingLabelText="Search by Artist"
+                onChange={this.handleChangeArtist}
+              />
+              <RaisedButton label="Search" style={ styles.searchButton } onClick={this.handleSearch} />
+            </div>
+            }
+        </div>
+        <div style={{ position: 'absolute', right: '0'}}>
           <Toggle
             style={styles.toggle}
             label={this.state.toggled ? 'Artist Search' : 'Date/Genre Filter'}
@@ -118,49 +168,6 @@ export default class Navbar extends React.Component {
             labelPosition="right"
           />
         </div>
-        {!this.state.toggled ?
-          <div>
-            <DatePicker
-              style={styles.datePicker}
-              floatingLabelText="Start Date"
-              defaultDate={this.state.startDate}
-              onChange={this.handleChangeStartDate}
-            />
-            <DatePicker
-              style={styles.datePicker}
-              floatingLabelText="End Date"
-              defaultDate={this.state.endDate}
-              onChange={this.handleChangeEndDate}
-            />
-            <SelectField floatingLabelText="Select Genre" style={styles.genre} value={this.state.genre} onChange={this.handleChangeGenre} >
-              <MenuItem value={1} primaryText="All" />
-              <MenuItem value={2} primaryText="Rock" />
-              <MenuItem value={3} primaryText="Pop" />
-              <MenuItem value={4} primaryText="Country" />
-              <MenuItem value={5} primaryText="R&B" />
-              <MenuItem value={6} primaryText="Folk" />
-              <MenuItem value={7} primaryText="Funk" />
-              <MenuItem value={8} primaryText="Jazz" />
-              <MenuItem value={9} primaryText="Hip-Hop/Rap" />
-              <MenuItem value={10} primaryText="World" />
-              <MenuItem value={11} primaryText="Latin" />
-              <MenuItem value={12} primaryText="Reggae" />
-              <MenuItem value={13} primaryText="Dance/Electronic" />
-            </SelectField>
-
-          </div>
-          :
-          <div>
-            <TextField
-              floatingLabelText="Search by Artist"
-              onChange={this.handleChangeArtist}
-            />
-
-          </div>
-        }
-        {!this.state.toggled ? <RaisedButton label="Filter" style={ styles.filterButton } onClick={this.handleFilter} />
-                             : <RaisedButton label="Search" style={ styles.filterButton } onClick={this.handleSearch} />
-        }
       </AppBar>
     )
   }

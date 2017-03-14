@@ -2,12 +2,12 @@ body {
   background: #c1b5ad;
   font-family: 'Varela Round', sans-serif;
   min-width: -webkit-min-content;
-  height: '800px' !important;
+  height: '600px';
   }
 
-#main{
+/*#main{
   height: '800px' !important;
-}
+}*/
 
 @media (min-width: 768px) {
   #map-canvas {
@@ -27,3 +27,7 @@ h3 {
   color: #64574c;
   text-align: center;
   margin-top: 0; }
+
+.clearfix {
+  height: 600px;
+}

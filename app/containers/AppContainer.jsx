@@ -7,30 +7,22 @@ import MapContainer from './MapContainer'
 
 export default function ({ children }) {
   return (
-    <div id="main">
+    <div>
       <NavbarContainer />
         <div className = "clearfix">
           <div className="map-container col-sm-8 col-lg-9">
             <MapContainer />
           </div>
           { children }
-          <div id="control-panel" className="col-sm-4 col-lg-3">
-            <div className="col-xs-6 col-sm-12">
-              <div className="panel panel-default">
-                <div className="panel-body" id="options-panel">
-                  <ShowInfoContainer />
-                </div>
-              </div>
-            </div>
-            <div className="col-xs-6 col-sm-12">
-              <div className="panel panel-default">
-                <div className="panel-body" id="itinerary">
-                  <PlaylistContainer />
-                </div>
-              </div>
+          <div className="panel panel-default col-sm-4 col-lg-3" style={{}}>
+            <div className="panel-body" id="options-panel">
+              <ShowInfoContainer />
             </div>
           </div>
         </div>
+      <div className="panel panel-default" style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', height: '80px', margin: '0'}}>
+        <PlaylistContainer />
+      </div>
     </div>
   );
 }

@@ -83,7 +83,7 @@ export default class JamMap extends React.Component {
     return (
     <InitializeGoogleMap
       containerElement={
-        <div style={{ height: `95vh`, width: `130vh` }} />
+        <div style={{ height: `80vh` }} />
       }
       mapElement={
         <div style={{ height: `100%` }} />
