@@ -10,12 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onMarkerClick: (marker) => {
-    console.log('before', marker)
     dispatch(selectShow(marker.event))
-    setTimeout(() => {
-      marker.showInfo = true
-      console.log('after', marker)
-    }, 100)
+    setTimeout(() => marker.showInfo = true, 100)
   }
 })
 

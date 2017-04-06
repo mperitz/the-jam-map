@@ -42,7 +42,6 @@ export default class JamMap extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('from will receive props ', props)
     this.setState({ markers: props.markers })
   }
 
@@ -79,7 +78,6 @@ export default class JamMap extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
     <InitializeGoogleMap
       containerElement={
