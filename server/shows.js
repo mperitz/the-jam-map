@@ -12,28 +12,22 @@ show.post('/', (req, res, next) => {
   const start = req.body.startDate ? req.body.startDate : startDate
   const end = req.body.endDate ? req.body.endDate : endDate
   const classification = req.body.genre && req.body.genre !== 'All' ? req.body.genre : 'music'
-  axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=${classification}&dmaId=345&size=200&apikey=g4tJkO8AdLZCtDt6ggl6pxhGxDK07oqX&startDateTime=${start}&endDateTime=${end}`)
+  axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=${classification}&dmaId=345&size=200&apikey=iD5LpzXktjoVga337aVAAKQsNBmKDDQB&startDateTime=${start}&endDateTime=${end}`)
   .then(response => response.data)
   .then(data => data._embedded.events)
-  .then(events => {
-    res.json(utils.convertShowDataArr(events))
-  })
+  .then(events => res.json(utils.convertShowDataArr(events)))
   .catch(next)
 })
 
 show.get('/:artist', (req, res, next) => {
   const artist = req.params.artist
-  axios.get(`https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=g4tJkO8AdLZCtDt6ggl6pxhGxDK07oqX&keyword=${artist}`)
+  axios.get(`https://app.ticketmaster.com/discovery/v2/attractions.json?apikey=iD5LpzXktjoVga337aVAAKQsNBmKDDQB&keyword=${artist}`)
   .then(response => response.data)
   .then(data => data._embedded.attractions[0])
-  .then(artistObj => {
-    return axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=g4tJkO8AdLZCtDt6ggl6pxhGxDK07oqX&attractionId=${artistObj.id}`)
-  })
+  .then(artistObj => axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=iD5LpzXktjoVga337aVAAKQsNBmKDDQB&attractionId=${artistObj.id}`))
   .then(response => response.data)
   .then(data => data._embedded.events)
-  .then(events => {
-    res.json(utils.convertShowDataArr(events))
-  })
+  .then(events => res.json(utils.convertShowDataArr(events)))
   .catch(next)
 })
 
