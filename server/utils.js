@@ -24,8 +24,8 @@ const convertShowDataArr = showArr => {
             state: event._embedded.venues[0].state.stateCode,
             zip: event._embedded.venues[0].postalCode
           },
-          lat: event._embedded.venues[0].location.latitude,
-          lng: event._embedded.venues[0].location.longitude
+          lat: event._embedded.venues[0].location && event._embedded.venues[0].location.latitude,
+          lng: event._embedded.venues[0].location && event._embedded.venues[0].location.longitude
         },
         attractionsArr: event._embedded.attractions && event._embedded.attractions.map(attraction => attraction.name)
       }
