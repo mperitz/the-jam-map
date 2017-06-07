@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 
-import secrets from '../../secrets'
-
 export default class Playlist extends React.Component {
   constructor(props) {
     super(props)
@@ -16,7 +14,7 @@ export default class Playlist extends React.Component {
   getSpotify = (props) => {
     if (props.show.attractionsArr) {
       const attractions = props.show.attractionsArr
-      axios.get(`https://api.spotify.com/v1/search?client_id=${secrets.spotify}&q=${attractions[0]}&type=album`)
+      axios.get(`https://api.spotify.com/v1/search?q=${attractions[0]}&type=album`)
       .then(response => response.data)
       .then(resObj => {
         const albums = resObj.albums.items
