@@ -12,12 +12,10 @@ show.post('/', (req, res, next) => {
   const start = req.body.startDate ? req.body.startDate : startDate
   const end = req.body.endDate ? req.body.endDate : endDate
   const classification = req.body.genre && req.body.genre !== 'All' ? req.body.genre : 'music'
-  console.log(start, end)
   axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?classificationName=${classification}&dmaId=345&size=200&apikey=${process.env.TM_KEY}&startDateTime=${start}&endDateTime=${end}`)
   .then(response => response.data)
   .then(data => data._embedded.events)
   .then(events => {
-    console.log(events)
     res.json(utils.convertShowDataArr(events))
   })
   .catch(next)

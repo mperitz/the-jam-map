@@ -8,6 +8,8 @@ const PrettyError = require('pretty-error')
 const finalHandler = require('finalhandler')
 // PrettyError docs: https://www.npmjs.com/package/pretty-error
 
+if (process.env.NODE_ENV === 'development') require('../secrets')
+
 // Bones has a symlink from node_modules/APP to the root of the app.
 // That means that we can require paths relative to the app root by
 // saying require('APP/whatever').
